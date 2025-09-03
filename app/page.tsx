@@ -1,30 +1,19 @@
+"use client";
+import React from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
-function LogoMark() {
+function VLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <div className="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 overflow-hidden">
-      <span className="absolute inset-0 bg-gradient-to-br from-white/15 to-transparent" />
-      <span className="relative h-3 w-3 rounded-full bg-white/80" />
-    </div>
-  );
-}
-
-function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M12 3l7 3v6c0 4.971-3.214 8.548-7 9-3.786-.452-7-4.029-7-9V6l7-3z"
-        className="fill-white/10 stroke-white/30"
-        strokeWidth="1.2"
-      />
-      <path d="M9 12l2 2 4-4" stroke="currentColor" className="text-white/60" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" aria-hidden fill="none" {...props}>
+      <path d="M3 6l5.5 12L21 6" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
+function ArrowRight(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden {...props}>
+    <svg viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   );
@@ -32,107 +21,148 @@ function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-[#0b0c10] text-white/90">
-      {/* Vignette + ambient glows */}
-      <div className="pointer-events-none absolute inset-0 vignette" />
-      {/* Corner ambient lights: lighter, larger, more visible */}
-      <div className="pointer-events-none absolute left-[-12%] top-[-12%] h-[55vh] w-[55vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(207,253,241,0.32),transparent_60%)] blur-[120px]" />
-      <div className="pointer-events-none absolute right-[-12%] top-[-10%] h-[55vh] w-[55vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(229,236,255,0.28),transparent_60%)] blur-[120px]" />
-      <div className="pointer-events-none absolute left-[-18%] bottom-[-16%] h-[50vh] w-[50vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(206,254,218,0.24),transparent_60%)] blur-[110px]" />
-      <div className="pointer-events-none absolute right-[-14%] bottom-[-14%] h-[52vh] w-[52vw] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(240,247,255,0.22),transparent_60%)] blur-[110px]" />
+    <main className="relative min-h-screen w-full text-white/90">
+      <div className="absolute inset-0 vignette" />
+      <motion.div
+        className="pointer-events-none absolute -left-24 top-0 h-[80vh] w-[55vw] aurora-left"
+        initial={{ opacity: 0.6, x: -20, y: 10 }}
+        animate={{ opacity: 0.9, x: 0, y: 0 }}
+        transition={{ duration: 0.9, easing: "ease-out" }}
+      />
+      <motion.div
+        className="pointer-events-none absolute -right-28 top-8 h-[85vh] w-[55vw] aurora-right"
+        initial={{ opacity: 0.6, x: 20, y: -10 }}
+        animate={{ opacity: 0.9, x: 0, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.1, easing: "ease-out" }}
+      />
 
-      {/* Main container (full-width) */}
-      <div className="w-full px-4 sm:px-6 md:px-8 py-8">
-        {/* Nav */}
-        <nav className="relative z-10 mx-auto w-[80%] flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl">
-          <div className="flex items-center gap-3">
-            <LogoMark />
-            <span className="hidden sm:block text-sm/6 text-white/70">Cortex</span>
-          </div>
-
-          <ul className="hidden md:flex items-center gap-1 text-sm">
-            {["Home", "DeFi App", "Assets", "Features", "Pricing", "FAQ"].map((item) => (
-              <li key={item}>
-                <a className="px-3 py-1.5 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors" href="#">
-                  {item}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a className="group inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/15 hover:bg-white/15 transition-colors" href="#">
-                <span>Protection</span>
-                <ShieldIcon className="h-4 w-4 text-white/70 group-hover:text-white" />
-              </a>
-            </li>
-          </ul>
-
+      <div className="relative mx-auto w-full max-w-7xl px-5 pt-6">
+        <motion.header
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, easing: "ease-out" }}
+          className="flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-xl"
+        >
           <div className="flex items-center gap-2">
-            <button className="hidden sm:inline-flex h-9 items-center rounded-full px-4 text-sm text-white/80 ring-1 ring-white/15 hover:bg-white/10">Sign in</button>
-            <button className="inline-flex h-9 items-center rounded-full bg-white text-black px-4 text-sm font-medium hover:bg-white/90">Create Account</button>
-          </div>
-        </nav>
-
-        {/* Hero Card */}
-        <section className="relative mt-6 overflow-hidden rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hero-surface min-h-[90vh] flex items-center">
-          {/* star field */}
-          <div className="absolute inset-0 grid-dots opacity-[0.35]" />
-          {/* vertical light lines */}
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-white/0 via-white/20 to-white/0" />
-            <div className="absolute left-[45%] top-0 h-full w-px bg-gradient-to-b from-white/0 via-white/10 to-white/0" />
-            <div className="absolute left-[55%] top-0 h-full w-px bg-gradient-to-b from-white/0 via-white/10 to-white/0" />
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15">
+              <VLogo className="h-4 w-4 text-white/80" />
+            </span>
+            <span className="text-sm text-white/80">VeChain</span>
           </div>
 
-          {/* soft spotlight */}
-          <div className="pointer-events-none absolute -right-20 top-10 h-[80%] w-[60%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.2),transparent_60%)] blur-3xl" />
-          <div className="pointer-events-none absolute -left-20 bottom-10 h-[60%] w-[40%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(207,253,241,0.18),transparent_60%)] blur-3xl" />
+          <nav className="hidden md:flex items-center gap-1 text-sm">
+            {["Explore","Build","Enterprise","Discover"].map((item)=> (
+              <a key={item} href="#" className="px-3 py-1.5 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+                {item}
+              </a>
+            ))}
+          </nav>
 
-          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-8 text-center md:py-0">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs text-white/80 ring-1 ring-white/15">
-              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/20">▶</span>
-              Unlock Your Assets Spark!
+          <a href="#" className="group inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-sm font-medium text-white/90 ring-1 ring-white/15 hover:bg-white/10">
+            Explore VeChain
+            <ArrowRight className="h-4 w-4 text-white/70 group-hover:text-white" />
+          </a>
+        </motion.header>
+
+        <section className="relative mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-black/40 hero-surface">
+          <motion.div
+            className="absolute inset-0 grid-dots"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
+
+          <motion.div
+            className="relative z-10 mx-auto flex min-h-[72vh] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, easing: "ease-out" }}
+          >
+            <motion.span
+              className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/80 ring-1 ring-white/15"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+            >
+              Web3 For Better
+            </motion.span>
+
+            <div>
+              <motion.h1
+                className="text-balance text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-[-0.02em]"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <span className="headline-gradient">Real-world adoption</span>
+                <br />
+                <span className="headline-gradient">blockchain technology</span>
+              </motion.h1>
             </div>
 
-            <h1 className="text-balance text-4xl sm:text-6xl md:text-7xl font-semibold tracking-[-0.02em]">
-              <span className="text-white">One-click for</span>
-              <br />
-              <span className="text-white/80">Asset Defense</span>
-            </h1>
-            <p className="mt-4 max-w-xl text-pretty text-sm sm:text-base text-white/70">
-              Dive into the art assets, where innovative blockchain technology meets financial expertise.
-            </p>
+            <motion.p
+              className="mt-4 max-w-2xl text-pretty text-sm sm:text-base text-white/75"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+            >
+              The VeChainThor blockchain is the foundation on which the VeChain ecosystem is built.
+            </motion.p>
 
-            <div className="mt-8 flex items-center gap-3">
-              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90">
-                Open App
-                <ArrowRightIcon className="h-4 w-4" />
+            <motion.div
+              className="mt-8 flex items-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+            >
+              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-2.5 text-sm font-medium text-black hover:bg-white">
+                Explore VeChain
+                <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white/90 ring-1 ring-white/15 hover:bg-white/15">
-                Discover More
+                Learn more
               </a>
-            </div>
+            </motion.div>
 
-            <div className="mt-14 flex items-center gap-8 opacity-70">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <span key={i} className="text-xs tracking-wide text-white/60">● ● ●</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Scroll hint */}
-          <div className="pointer-events-none absolute bottom-4 left-4 hidden sm:flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs text-white/70 ring-1 ring-white/15">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full ring-1 ring-white/20">↓</span>
-            02/03 · Scroll down
-          </div>
+            {/* logo strip moved to footer below */}
+          </motion.div>
         </section>
 
-        {/* Logos row */}
-        <div className="mx-auto w-[80%] mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center text-xs text-white/60 backdrop-blur-xl sm:grid-cols-4 md:grid-cols-7">
-          {["Vercel", "loom", "Cash App", "Loops", "zapier", "ramp", "Raycast"].map((name) => (
-            <div key={name} className="py-1 opacity-70 hover:opacity-100 transition-opacity">{name}</div>
-          ))}
-        </div>
+        <motion.footer
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mx-auto mt-8 flex w-full flex-col items-center gap-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-6 backdrop-blur-xl"
+        >
+          <p className="text-xs uppercase tracking-[0.18em] text-white/60">Trusted by forward‑thinking teams</p>
+          <div className="grid w-full max-w-5xl grid-cols-3 items-center justify-items-center gap-6 text-white/70 sm:grid-cols-6">
+            {[
+              { src: "/vercel.svg", alt: "Vercel" },
+              { src: "/next.svg", alt: "Next.js" },
+              { src: "/globe.svg", alt: "Globe" },
+              { src: "/window.svg", alt: "Window" },
+              { src: "/file.svg", alt: "File" },
+              { src: "/vercel.svg", alt: "Vercel 2" },
+            ].map((logo, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 0.9, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                whileHover={{ opacity: 1, scale: 1.04 }}
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={72}
+                  height={22}
+                  className="h-6 w-auto opacity-60 contrast-125 invert-[.9] grayscale"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.footer>
       </div>
-    </div>
+    </main>
   );
 }
