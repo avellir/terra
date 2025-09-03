@@ -64,13 +64,7 @@ export default function Home() {
           </a>
         </motion.header>
 
-        <section className="relative mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-black/40 hero-surface">
-          <motion.div
-            className="absolute inset-0 grid-dots"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          />
+        <section className="relative mt-8">
 
           <motion.div
             className="relative z-10 mx-auto flex min-h-[72vh] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center"
@@ -110,7 +104,7 @@ export default function Home() {
             </motion.p>
 
             <motion.div
-              className="mt-8 flex items-center gap-3"
+              className="mt-8 flex items-center justify-center"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.45 }}
@@ -118,9 +112,6 @@ export default function Home() {
               <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-2.5 text-sm font-medium text-black hover:bg-white">
                 Explore VeChain
                 <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white/90 ring-1 ring-white/15 hover:bg-white/15">
-                Learn more
               </a>
             </motion.div>
 
