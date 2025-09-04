@@ -19,21 +19,7 @@ function ArrowRight(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-// Reusable animation props
-const floatProps = (
-  speed = 9,
-  amplitude = 8,
-  reverse = false,
-  delay = 0
-) => ({
-  animate: { y: [0, reverse ? amplitude : -amplitude, 0] },
-  transition: { duration: speed, repeat: Infinity, easing: "ease-in-out", delay },
-})
-
-const shimmerProps = (duration = 7.5, delay = 0) => ({
-  animate: { opacity: [0.72, 0.98, 0.72] },
-  transition: { duration, repeat: Infinity, easing: "ease-in-out", delay },
-})
+// Removed SVG animation helpers to keep SVGs static
 
 
 export default function Home() {
@@ -53,10 +39,9 @@ export default function Home() {
         transition={{ duration: 0.9, delay: 0.1, easing: "ease-out" }}
       />
 
-    {/* LEFT AURORA */}
-<motion.svg
+    {/* LEFT AURORA (static) */}
+<svg
   aria-hidden
-  {...floatProps(9, 8, /*reverse*/ false)}
   style={{
     position: "absolute",
     top: "-160px",
@@ -98,30 +83,27 @@ export default function Home() {
     fill="url(#vc-left-body)" 
   />
   <g filter="url(#vc-softGlow)">
-    <motion.path
+    <path
       d="M10 160 C 210 280 150 430 330 590 S 290 830 50 930"
       stroke="url(#vc-left-core)"
       strokeWidth="118"
       strokeLinecap="round"
       fill="none"
-      {...shimmerProps(7.5)}
     />
-    <motion.path
+    <path
       d="M-10 220 C 170 320 150 470 320 620 S 260 820 20 900"
       stroke="url(#vc-left-core)"
       strokeWidth="74"
       strokeLinecap="round"
       fill="none"
       opacity=".65"
-      {...shimmerProps(7.5, 0.4)}
     />
   </g>
-</motion.svg>
+</svg>
 
-{/* RIGHT AURORA (reverse float) */}
-<motion.svg
+{/* RIGHT AURORA (static) */}
+<svg
   aria-hidden
-  {...floatProps(10.5, 8, /*reverse*/ true)}
   style={{
     position: "absolute",
     top: "-160px",
@@ -164,30 +146,27 @@ export default function Home() {
     fill="url(#vc-right-body)"
   />
   <g filter="url(#vc-softGlow)">
-    <motion.path
+    <path
       d="M900 160 C 700 280 760 430 580 590 S 630 830 870 930"
       stroke="url(#vc-right-core)"
       strokeWidth="118"
       strokeLinecap="round"
       fill="none"
-      {...shimmerProps(7.5)}
     />
-    <motion.path
+    <path
       d="M920 220 C 740 320 760 470 590 620 S 650 820 890 900"
       stroke="url(#vc-right-core)"
       strokeWidth="74"
       strokeLinecap="round"
       fill="none"
       opacity=".65"
-      {...shimmerProps(7.5, 0.4)}
     />
   </g>
-</motion.svg>
+</svg>
 
-{/* BOTTOM CORE WAVE */}
-<motion.svg
+{/* BOTTOM CORE WAVE (static) */}
+<svg
   aria-hidden
-  {...floatProps(9, 8, false)}
   style={{
     position: "absolute",
     bottom: "-180px",
@@ -221,33 +200,30 @@ export default function Home() {
     d="M0 260 C 220 120 420 220 700 240 C 980 260 1160 220 1400 200 L 1400 480 L 0 480 Z"
     fill="url(#vc-bottom-soft)"
   />
-  <motion.path
+  <path
     d="M-10 300 C 260 240 470 300 700 270 C 930 240 1140 300 1410 260"
     stroke="url(#vc-bottom-core)"
     strokeWidth="116"
     strokeLinecap="round"
     fill="none"
-    {...shimmerProps(7.5)}
   />
-  <motion.path
+  <path
     d="M-10 330 C 280 280 480 340 700 305 C 920 270 1140 330 1410 305"
     stroke="url(#vc-bottom-core)"
     strokeWidth="88"
     strokeLinecap="round"
     fill="none"
     opacity=".7"
-    {...shimmerProps(8.2, 0.25)}
   />
-  <motion.path
+  <path
     d="M-10 355 C 300 305 500 360 700 330 C 900 300 1140 350 1410 330"
     stroke="url(#vc-bottom-core)"
     strokeWidth="64"
     strokeLinecap="round"
     fill="none"
     opacity=".55"
-    {...shimmerProps(8.8, 0.5)}
   />
-</motion.svg>
+</svg>
 
 
       <div className="relative mx-auto w-full max-w-7xl px-5 pt-6">
@@ -371,4 +347,3 @@ export default function Home() {
     </main>
   );
 }
-

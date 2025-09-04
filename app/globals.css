@@ -87,6 +87,9 @@
 @utility text-balance { text-wrap: balance; }
 @utility text-pretty { text-wrap: pretty; }
 
+/* Disable all CSS-driven animations on SVGs */
+svg, svg * { animation: none !important; }
+
 /* Subtle dot grid texture */
 .grid-dots {
   background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px);
